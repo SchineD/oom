@@ -43,8 +43,8 @@ namespace Task2
 
         static void Main(string[] args)
         {
-            var a = new Guitar("Gibson", "Les Paul", 2499.99m);
-            var b = new Guitar("Fender", "Statocaster", 1999.99m);
+            Guitar a = new Guitar("Gibson", "Les Paul", 2499.99m);
+            Guitar b = new Guitar("Fender", "Statocaster", 1999.99m);
            
             Console.WriteLine("brand: {0}, model: {1}, price: {2}", a.Brand, a.Model, a.Price);
             Console.WriteLine("brand: {0}, model: {1}, price: {2}", b.Brand, b.Model, b.Price);
