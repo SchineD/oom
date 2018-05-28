@@ -20,14 +20,14 @@ namespace Task3
         private decimal m_price;
 
 
-        public Drumkit(string newBrand, string newModel, decimal newPrice)
+        public Drumkit(string Brand, string Model, decimal Price)
         {
-            if (string.IsNullOrWhiteSpace(newBrand)) throw new ArgumentException("Brand must not be empty.");
-            if (string.IsNullOrWhiteSpace(newModel)) throw new ArgumentException("Model must not be empty.");
+            if (string.IsNullOrWhiteSpace(Brand)) throw new ArgumentException("Brand must not be empty.");
+            if (string.IsNullOrWhiteSpace(Model)) throw new ArgumentException("Model must not be empty.");
 
-            Brand = newBrand;
-            Model = newModel;
-            UpdatePrice(newPrice);
+            this.Brand = Brand;
+            this.Model = Model;
+            this.UpdatePrice(Price);
         }
 
         public string Model { get; }
@@ -41,21 +41,21 @@ namespace Task3
             m_price = newPrice;
         }
 
-        public string Description => "Model: " + Model + "Brand: " + Brand + "Price: " + GetPrice();
+        public string Description => "Model: " + Model + " Brand: " + Brand + " Price: " + GetPrice();
     }
 
     class Guitar : IInstrument
     {
         private decimal m_price;
 
-        public Guitar(string newBrand, string newModel, decimal newPrice)
+        public Guitar(string Brand, string Model, decimal Price)
         {
-            if (string.IsNullOrWhiteSpace(newBrand)) throw new ArgumentException("Brand must not be empty.");
-            if (string.IsNullOrWhiteSpace(newModel)) throw new ArgumentException("Model must not be empty.");
+            if (string.IsNullOrWhiteSpace(Brand)) throw new ArgumentException("Brand must not be empty.");
+            if (string.IsNullOrWhiteSpace(Model)) throw new ArgumentException("Model must not be empty.");
 
-            Brand = newBrand;
-            Model = newModel;
-            UpdatePrice(newPrice);
+            this.Brand = Brand;
+            this.Model = Model;
+            this.UpdatePrice(Price);
         }
 
         public string Model { get; }
@@ -69,7 +69,7 @@ namespace Task3
             m_price = newPrice;
         }
 
-        public string Description => "Model: " + Model + "Brand: " + Brand + "Price: " + GetPrice();
+        public string Description => "Model: " + Model + " Brand: " + Brand + " Price: " + GetPrice();
     }
 
     class MainClass
@@ -94,6 +94,7 @@ namespace Task3
             var settings = new JsonSerializerSettings() { Formatting = Formatting.Indented, TypeNameHandling = TypeNameHandling.Auto };
             Console.WriteLine(JsonConvert.SerializeObject(items, settings));
 
+            
             var text = JsonConvert.SerializeObject(items, settings);
             var desktop = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             var filename = Path.Combine(desktop, "items.json");
@@ -101,7 +102,9 @@ namespace Task3
 
             var textFromFile = File.ReadAllText(filename);
             var itemsFromFile = JsonConvert.DeserializeObject<IInstrument[]>(textFromFile, settings);
+
             foreach (var x in itemsFromFile) Console.WriteLine(x.Description);
+            
          }
     }
 }
